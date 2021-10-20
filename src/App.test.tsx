@@ -1,9 +1,39 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import React from "react";
+import { render, waitFor, screen } from "@testing-library/react";
+import { rest } from "msw";
+import { setupServer } from "msw/node";
+import response from "./recruitment-challenge-payload.json";
+import App from "./App";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test("renders the company logo", () => {
+  const { getByRole } = render(<App />);
+
+  expect(getByRole("img")).toBeInTheDocument();
+});
+
+describe("payroll", () => {
+  const server = setupServer(
+    rest.get(
+      "https://splitc-public-files-bucket.s3.us-east-1.amazonaws.com/recruitment-challenge-payload.json",
+      (req, res, ctx) => {
+        return res(ctx.json(response));
+      }
+    )
+  );
+
+  beforeAll(() => server.listen());
+  afterEach(() => server.resetHandlers());
+  afterAll(() => server.close());
+
+  it("shows the payroll title", async () => {
+    render(<App />);
+
+    await waitFor(() => screen.getByText(/Confira o pagamento/));
+  });
+
+  it("shows the creditor name", async () => {
+    render(<App />);
+
+    await waitFor(() => screen.getAllByText(/Ciclano/));
+  });
 });

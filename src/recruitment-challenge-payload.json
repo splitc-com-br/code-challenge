@@ -1,0 +1,26 @@
+[
+  {
+    "id": "ef376cc1-e7c2-4c4c-963e-6cc12e743428",
+    "creditor_name": "Fulano",
+    "company_name": "CNPJ 1",
+    "value": 20783.1068
+  },
+  {
+    "id": "ef376cc1-e7c2-4c4c-963e-6cc12e743428",
+    "creditor_name": "Fulano",
+    "company_name": "CNPJ 2",
+    "value": 5783.1068
+  },
+  {
+    "id": "487e2cbe-602d-4bc0-a4bf-e0d8cfa1fbfb",
+    "creditor_name": "Ciclano",
+    "company_name": "CNPJ 1",
+    "value": 369.1734
+  },
+  {
+    "id": "487e2cbe-602d-4bc0-a4bf-e0d8cfa1fbfb",
+    "creditor_name": "Ciclano",
+    "company_name": "CNPJ 2",
+    "value": 12369.1734
+  }
+]
