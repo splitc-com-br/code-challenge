@@ -28,12 +28,18 @@ describe("payroll", () => {
   it("shows the payroll title", async () => {
     render(<App />);
 
-    await waitFor(() => screen.getByText(/Confira o pagamento/));
+    const title = await waitFor(() => screen.getByText(/Confira o pagamento/));
+
+    expect(title).toBeInTheDocument();
   });
 
   it("shows the creditor name", async () => {
     render(<App />);
 
-    await waitFor(() => screen.getAllByText(/Ciclano/));
+    const creditorName = await waitFor(() => screen.getAllByText(/Ciclano/));
+
+    creditorName.forEach((creditorNameOccurence) => {
+      expect(creditorNameOccurence).toBeInTheDocument();
+    });
   });
 });
